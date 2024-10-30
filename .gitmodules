@@ -1,0 +1,3 @@
+[submodule "Drivers/mcp443x_I2C_Msgs"]
+	path = Drivers/mcp443x_I2C_Msgs
+	url = https://github.com/TameTamarin/mcp443x_I2C_Msgs.git
