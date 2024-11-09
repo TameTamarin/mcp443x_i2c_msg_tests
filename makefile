@@ -1,28 +1,47 @@
 
 ######################################
-# target
+# declare objects
 ######################################
-mcp443x_tests : mcp443x_tests.o mcp443x.o
-	cc -o mcp443x_tests mcp443x_tests.o mcp443x.o
+BUILD_DIR := build
+OBJS = $(addprefix $(BUILD_DIR)/,mcp443x_tests.o mcp443x.o)
+C_SOURCE = Drivers/mcp443x_I2C_Msgs/Src/mcp443x.c
 
-mcp443x_tests.o : mcp443x_tests.c
-	cc -c mcp443x_tests.c
+CC = gcc
 
-mcp443x.o : Drivers/mcp443x_I2C_Msgs/Src/mcp443x.c \
-	Drivers/mcp443x_I2C_Msgs/Inc/mcp443x.h
-	cc -c Drivers/mcp443x_I2C_Msgs/Src/mcp443x.c
-
-#BUILD_DIR := build
 
 
 ######################################
 # create build directory
 ######################################
-#$(BUILD_DIR):
-#	mkdir $(BUILD_DIR)
+
+
+
+######################################
+# target
+######################################
+$(BUILD_DIR)/mcp443x_tests : $(OBJS)
+	cc -o $(BUILD_DIR)/mcp443x_tests $(OBJS)
+
+
+$(BUILD_DIR)/mcp443x_tests.o : mcp443x_tests.c
+	$(CC) -c -o $(BUILD_DIR)/mcp443x_tests.o mcp443x_tests.c
+
+$(BUILD_DIR)/mcp443x.o : $(C_SOURCE)
+	$(CC) -c -o $(BUILD_DIR)/mcp443x.o $(C_SOURCE)
+
+
+# $(BUILD_DIR)/%.o: %.c
+# 	$(CC) -c -o $@ $^
+
+
+
+# $(OBJS): | $(BUILD_DIR)
+
+# $(BUILD_DIR):
+# 	mkdir $(BUILD_DIR)
 
 #######################################
 # clean up
 #######################################
 clean :
-	rm mcp443x_tests.o mcp443x.o
+	rm $(OBJS)
