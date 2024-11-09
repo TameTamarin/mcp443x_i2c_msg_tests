@@ -2,3 +2,6 @@ mcp443x_tests.exe
 build/mcp443x_tests.o
 build/mcp443x.o
 build/mcp443x_tests.exe
+bin/mcp443x_tests.o
+bin/mcp443x.o
+bin/mcp443x_tests.exe

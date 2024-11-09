@@ -2,18 +2,11 @@
 ######################################
 # declare objects
 ######################################
-BUILD_DIR := build
+BUILD_DIR := bin
 OBJS = $(addprefix $(BUILD_DIR)/,mcp443x_tests.o mcp443x.o)
 C_SOURCE = Drivers/mcp443x_I2C_Msgs/Src/mcp443x.c
 
 CC = gcc
-
-
-
-######################################
-# create build directory
-######################################
-
 
 
 ######################################
@@ -34,11 +27,15 @@ $(BUILD_DIR)/mcp443x.o : $(C_SOURCE)
 # 	$(CC) -c -o $@ $^
 
 
+######################################
+# create build directory
+######################################
 
-# $(OBJS): | $(BUILD_DIR)
+$(BUILD_DIR):
+	mkdir $(BUILD_DIR)
 
-# $(BUILD_DIR):
-# 	mkdir $(BUILD_DIR)
+
+$(OBJS): | $(BUILD_DIR)
 
 #######################################
 # clean up
