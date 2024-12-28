@@ -13,6 +13,28 @@ void print_num_to_bin_str(uint8_t num){
 
 int main(){
     printf("starting mcp443x_tests\n");
+    
+    printf("\nMemory address Byte\n");
     print_num_to_bin_str(mcp44xx_address_byte(0));
+    
+    for(uint8_t i = 0; i<4; i++){
+    printf("\nIncrement chan %d \n", i);
+    print_num_to_bin_str(increment_wiper(i));
+    printf("\n");
+    }
+    
+    for(uint8_t i = 0; i<4; i++){
+    printf("\nDecrement chan %d \n", i);
+    print_num_to_bin_str(decrement_wiper(i));
+    printf("\n");
+    }
+
+    for(uint8_t i = 0; i<4; i++){
+    printf("\nSet Pot Wiper Value %d \n", i);
+    print_num_to_bin_str(set_pot_wiper_val(i));
+    printf("\n");
+    }
+    
+
     return 0;
 }
